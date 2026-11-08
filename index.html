@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajude o Rio Grande do Sul | Doações Oficiais</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <img src="/static/images/logo.jpg" alt="SOS Rio Grande do Sul">
+        <div>
+          <strong>SOS</strong> Rio Grande do Sul
+        </div>
+      </div>
+      <nav>
+        <a href="#como-doar">Como Doar</a>
+        <a href="#imagens">Ações</a>
+        <a href="#transparencia">Transparência</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>SOS Rio Grande do Sul</h1>
+      <p>Ajude quem precisa. Doe pelos canais oficiais.</p>
+      <a href="#como-doar" class="btn">Quero Doar Agora</a>
+    </div>
+  </section>
+
+  <section id="como-doar" class="section">
+    <div class="container">
+      <h2>Como Doar (Canais Oficiais)</h2>
+      <div class="donation-cards">
+        <div class="card">
+          <h3>SOS Rio Grande do Sul</h3>
+          <p>Canal oficial do Governo do Estado</p>
+          <div class="pix">
+            <strong>PIX (CNPJ):</strong><br>
+            92.958.800/0001-38
+          </div>
+          <p class="bank">Banco: Banrisul</p>
+          <button class="btn copy" onclick="navigator.clipboard.writeText('92.958.800/0001-38'); alert('PIX copiado!')">Copiar PIX</button>
+        </div>
+        <div class="card">
+          <h3>Prefeitura de Porto Alegre</h3>
+          <p>Doações para a capital</p>
+          <div class="pix">
+            <strong>PIX (CNPJ):</strong><br>
+            92.963.560/0001-60
+          </div>
+          <p class="bank">Banco: Caixa Econômica Federal</p>
+          <button class="btn copy" onclick="navigator.clipboard.writeText('92.963.560/0001-60'); alert('PIX copiado!')">Copiar PIX</button>
+        </div>
+      </div>
+      <p class="note">Doações via PIX são isentas de impostos e vão direto para as contas oficiais.</p>
+    </div>
+  </section>
+
+  <section id="imagens" class="section bg-light">
+    <div class="container">
+      <h2>Ações de Ajuda</h2>
+      <p class="subtitle">Voluntários e militares organizando doações para as vítimas</p>
+      <div class="gallery">
+        <img src="/static/images/doacoes1.jpg" alt="Voluntários organizando doações">
+        <img src="/static/images/doacoes2.jpg" alt="Doações de roupas e mantimentos">
+      </div>
+    </div>
+  </section>
+
+  <section id="transparencia" class="section">
+    <div class="container">
+      <h2>Transparência</h2>
+      <div class="info">
+        <p>As doações para o <strong>SOS Rio Grande do Sul</strong> são gerenciadas pelo Governo do Estado.</p>
+        <p>Mais informações oficiais: <a href="https://www.estado.rs.gov.br/doacao" target="_blank">estado.rs.gov.br/doacao</a></p>
+        <p>Este site apenas facilita o acesso aos canais oficiais. Não arrecadamos doações diretamente.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Ajude o Rio Grande do Sul • Canais oficiais do Governo do Estado</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,47 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; color: #1a1a1a; line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+.header { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; }
+.header .container { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo img { height: 48px; width: auto; border-radius: 8px; }
+.logo strong { font-size: 1.3rem; color: #c0392b; }
+.logo div { font-size: 1.1rem; }
+nav a { margin-left: 24px; text-decoration: none; color: #333; font-weight: 500; }
+nav a:hover { color: #c0392b; }
+
+.hero { background: linear-gradient(135deg, #c0392b 0%, #8e241a 100%); color: white; padding: 100px 0; text-align: center; }
+.hero h1 { font-size: 2.8rem; margin-bottom: 16px; }
+.hero p { font-size: 1.2rem; margin-bottom: 32px; opacity: 0.95; }
+.btn { display: inline-block; background: #fff; color: #c0392b; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; }
+.btn:hover { background: #f8f8f8; }
+.btn.copy { background: #c0392b; color: white; margin-top: 12px; }
+.btn.copy:hover { background: #a93226; }
+
+.section { padding: 80px 0; }
+.bg-light { background: #f8f9fa; }
+h2 { font-size: 2rem; text-align: center; margin-bottom: 12px; color: #1a1a1a; }
+.subtitle { text-align: center; color: #666; margin-bottom: 40px; }
+
+.donation-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; }
+.card { background: white; padding: 32px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; }
+.card h3 { color: #c0392b; margin-bottom: 8px; }
+.pix { background: #f8f9fa; padding: 16px; border-radius: 8px; margin: 16px 0; font-size: 1.1rem; }
+.bank { color: #666; font-size: 0.9rem; }
+.note { text-align: center; margin-top: 32px; color: #666; font-size: 0.95rem; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; }
+.gallery img { width: 100%; height: 320px; object-fit: cover; border-radius: 12px; }
+
+.info { max-width: 700px; margin: 0 auto; text-align: center; }
+.info p { margin: 12px 0; }
+.info a { color: #c0392b; }
+
+footer { background: #1a1a1a; color: #aaa; text-align: center; padding: 24px; font-size: 0.9rem; }
+
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  nav { display: none; }
+  .gallery { grid-template-columns: 1fr; }
+}
