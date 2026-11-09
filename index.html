@@ -37,24 +37,22 @@
       <h2>Como Doar (Canais Oficiais)</h2>
       <div class="donation-cards">
         <div class="card">
-          <h3>SOS Rio Grande do Sul</h3>
-          <p>Canal oficial do Governo do Estado</p>
+          <h3>Gerar PIX com QR Code</h3>
+          <p>Digite o valor e gere o código</p>
+          <input type="number" id="valor" placeholder="Valor (ex: 50.00)" step="0.01" min="1" style="width:100%;padding:12px;margin:12px 0;border:1px solid #ddd;border-radius:8px;font-size:1rem;">
+          <button class="btn copy" onclick="gerarPix()">Gerar QR Code PIX</button>
+          <div id="qrcode" style="margin-top:20px;"></div>
+          <div id="copia-cola" style="margin-top:12px;font-size:0.85rem;word-break:break-all;"></div>
+          <button id="btn-copiar" class="btn copy" style="display:none;margin-top:8px;" onclick="copiarCodigo()">Copiar Código</button>
+        </div>
+        <div class="card">
+          <h3>PIX Direto (Chave)</h3>
+          <p>Use a chave oficial</p>
           <div class="pix">
             <strong>PIX (CNPJ):</strong><br>
             92.958.800/0001-38
           </div>
-          <p class="bank">Banco: Banrisul</p>
           <button class="btn copy" onclick="navigator.clipboard.writeText('92.958.800/0001-38'); alert('PIX copiado!')">Copiar PIX</button>
-        </div>
-        <div class="card">
-          <h3>Prefeitura de Porto Alegre</h3>
-          <p>Doações para a capital</p>
-          <div class="pix">
-            <strong>PIX (CNPJ):</strong><br>
-            92.963.560/0001-60
-          </div>
-          <p class="bank">Banco: Caixa Econômica Federal</p>
-          <button class="btn copy" onclick="navigator.clipboard.writeText('92.963.560/0001-60'); alert('PIX copiado!')">Copiar PIX</button>
         </div>
       </div>
       <p class="note">Doações via PIX são isentas de impostos e vão direto para as contas oficiais.</p>
@@ -88,5 +86,62 @@
       <p>Ajude o Rio Grande do Sul • Canais oficiais do Governo do Estado</p>
     </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>
+    const PIX_KEY = "92.958.800/0001-38"; // Chave PIX oficial
+    const NOME = "SOS Rio Grande do Sul";
+    const CIDADE = "PORTO ALEGRE";
+
+    function gerarPix() {
+      const valor = document.getElementById("valor").value;
+      if (!valor || valor <= 0) { alert("Digite um valor válido"); return; }
+
+      const payload = gerarPayloadPix(PIX_KEY, NOME, CIDADE, valor);
+      const qrDiv = document.getElementById("qrcode");
+      qrDiv.innerHTML = "";
+      QRCode.toCanvas(qrDiv, payload, { width: 220 }, function (err) {
+        if (err) console.error(err);
+      });
+
+      document.getElementById("copia-cola").textContent = payload;
+      document.getElementById("btn-copiar").style.display = "inline-block";
+    }
+
+    function gerarPayloadPix(chave, nome, cidade, valor) {
+      const valorStr = parseFloat(valor).toFixed(2);
+      let payload = "000201";
+      payload += "26" + (22 + chave.length).toString().padStart(2, "0") + "0014br.gov.bcb.pix01" + chave.length.toString().padStart(2, "0") + chave;
+      payload += "52040000";
+      payload += "5303986";
+      payload += "54" + valorStr.length.toString().padStart(2, "0") + valorStr;
+      payload += "5802BR";
+      payload += "59" + nome.length.toString().padStart(2, "0") + nome;
+      payload += "60" + cidade.length.toString().padStart(2, "0") + cidade;
+      payload += "62070503***";
+      payload += "6304";
+      const crc = crc16(payload);
+      return payload + crc;
+    }
+
+    function crc16(str) {
+      let crc = 0xFFFF;
+      for (let i = 0; i < str.length; i++) {
+        crc ^= str.charCodeAt(i) << 8;
+        for (let j = 0; j < 8; j++) {
+          if (crc & 0x8000) crc = (crc << 1) ^ 0x1021;
+          else crc <<= 1;
+          crc &= 0xFFFF;
+        }
+      }
+      return crc.toString(16).toUpperCase().padStart(4, "0");
+    }
+
+    function copiarCodigo() {
+      const codigo = document.getElementById("copia-cola").textContent;
+      navigator.clipboard.writeText(codigo);
+      alert("Código PIX copiado!");
+    }
+  </script>
 </body>
 </html>
